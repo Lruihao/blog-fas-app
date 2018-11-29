@@ -16,7 +16,7 @@
 
 
 ### 下载使用
-> 开发使用:下载fas导入fusion app 或者clone源码导入本地。
+> 开发使用:下载fas导入fusion app 或者clone源码导入本地。    
 > 用户:下载安装即可，app内也可以更新，不过就我自己用，懒得更新。
 > * [直链](http://ss.uixsj.cn/bczc_2.2.5_beta.apk)
 > * [百度云，密码:29p5](https://pan.baidu.com/s/19iyxHQ6kQjj3eJ0fS3ZDXw)
