@@ -1,0 +1,2 @@
+template="blank"
+name="LOVE"

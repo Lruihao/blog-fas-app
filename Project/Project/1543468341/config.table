@@ -1,0 +1,986 @@
+{
+  ["toolbar"]	= {
+      ["搜索框提示"]	= "" ;
+      ["输入栏模式"]	= false ;
+      ["启用搜索功能"]	= false ;
+      ["搜索URL"]	= "" ;
+      ["搜索功能"]	= false ;
+      ["icon_btns"]	= {
+          [2]	= {
+              ["icon"]	= "refresh" ;
+              ["onClick"]	= "刷新网页()" ;
+              } ;
+          [1]	= {
+              ["icon"]	= "bookmark_outline" ;
+              ["onClick"]	= "addDataDialog(\"Collection\",\"加入收藏\",webView.getTitle(),webView.getUrl())" ;
+              } ;
+          } ;
+      ["menus"]	= {
+          [1]	= {
+              ["name"]	= "分享链接" ;
+              ["onClick"]	= "分享文本(webView.getUrl())" ;
+              } ;
+          [2]	= {
+              ["name"]	= "方向锁定" ;
+              ["onClick"]	= "if flag==1 then\
+  activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);\
+  SetHSP=\"H\"\
+else\
+  SetHSP=nil\
+end\
+\
+if SetHSP==nil then\
+  --竖屏锁定\
+  activity.setRequestedOrientation(1);\
+  flag=1\
+else\
+  flag=0\
+end\
+\
+\
+\
+" ;
+              } ;
+          [3]	= {
+              ["name"]	= "夜间模式" ;
+              ["onClick"]	= "--将aaa修改成你自己的默认颜值\
+\
+local aaa=\"#FFF3F3F3\"   --默认顶栏颜色aaa\
+local txtroute=\"/data/data/\"..activity.getPackageName()..\"/yejian.xml\"\
+import \"java.io.File\"\
+File(txtroute).createNewFile()\
+local b=io.open(txtroute):read(\"*a\")\
+if b==\"开启\"then\
+io.open(txtroute,\"w+\"):write(\"lruihao.cn\"):close()\
+刷新网页()\
+toolbarParent.setBackgroundColor(Color.parseColor(aaa));\
+弹出消息(\"夜间模式已关闭\")\
+else\
+File(txtroute).createNewFile()\
+io.open(txtroute,\"w+\"):write(\"开启\"):close()\
+toolbarParent.setBackgroundColor(Color.parseColor(\"#ff212121\"));\
+弹出消息(\"夜间模式已开启\")\
+加载Js([[{\
+    css = document.createElement('link');  \
+    css.id = 'xxx_browser_2014';  \
+    css.rel = 'stylesheet';  \
+    css.href = 'data:text/css,html,body,header,div,a,span,table,tr,td,th,tbody,p,form,input,ul,ol,li,dl,dt,dd,section,footer,nav,h1,h2,h3,h4,h5,h6,em,pre{background: #333 !important;color:#616161!important;border-color:#454530!important;text-shadow:0!important;-webkit-text-fill-color : none!important;}html a,html a *{color:#5a8498!important;text-decoration:underline!important;}html a:visited,html a:visited *,html a:active,html a:active *{color:#505f64!important;}html a:hover,html a:hover *{color:#cef!important;}html input,html select,html button,html textarea{background:#4d4c40!important;border:1px solid #5c5a46!important;border-top-color:#494533!important;border-bottom-color:#494533!important;}html input[type=button],html input[type=submit],html input[type=reset],html input[type=image],html button{border-top-color:#494533!important;border-bottom-color:#494533!important;}html input:focus,html select:focus,html option:focus,html button:focus,html textarea:focus{background:#5c5b3e!important;color:#fff!important;border-color:#494100 #635d00 #474531!important;outline:1px solid #041d29!important;}html input[type=button]:focus,html input[type=submit]:focus,html input[type=reset]:focus,html input[type=image]:focus,html button:focus{border-color:#494533 #635d00 #474100!important;}html input[type=radio]{background:none!important;border-color:#333!important;border-width:0!important;}html img[src],html input[type=image]{opacity:.5;}html img[src]:hover,html input[type=image]:hover{opacity:1;}html,html body {scrollbar-base-color: #4d4c40 !important;scrollbar-face-color: #5a5b3c !important;scrollbar-shadow-color: #5a5b3c !important;scrollbar-highlight-color: #5c5b3c !important;scrollbar-dlight-color: #5c5b3c !important;scrollbar-darkshadow-color: #474531 !important;scrollbar-track-color: #4d4c40 !important;scrollbar-arrow-color: #000 !important;scrollbar-3dlight-color: #6a6957 !important;}dt a{background-color: #333 !important;}';   document.getElementsByTagName('head')[0].appendChild(css);  \
+};]])\
+end" ;
+              } ;
+          [4]	= {
+              ["name"]	= "书签管理" ;
+              ["onClick"]	= "showDataDialog(\"Collection\",\"收藏\")" ;
+              } ;
+          [5]	= {
+              ["name"]	= "历史记录" ;
+              ["onClick"]	= "--打开历史记录\
+show_hst()" ;
+              } ;
+          [6]	= {
+              ["name"]	= "检测更新" ;
+              ["onClick"]	= "--检查测当前是否最新版本\
+local dl=ProgressDialog.show(activity,nil,'更新检测中…')\
+dl.show()\
+local tt=Ticker()\
+tt.start()\
+packinfo=this.getPackageManager().getPackageInfo(this.getPackageName(),((32552732/2/2-8183)/10000-6-231)/9)\
+version=tostring(packinfo.versionName)\
+versioncode=tostring(packinfo.versionCode)\
+\
+url=\"https://share.weiyun.com/43fa66d8fc95db27141530ed2d006be2\";\
+function 过滤(content)\
+  版本名=content:match(\"【版本名】(.-)【版本名】\")\
+  版本=content:match(\"【版本】(.-)【版本】\")\
+  内容=content:match(\"【内容】(.-)【内容】\")\
+  链接=content:match(\"【链接】(.-)【链接】\")\
+if(版本名==nil) then\
+  版本名=\"获取失败\"\
+end\
+if(版本==nil) then\
+  版本=\"0\"\
+end\
+if(内容==nil) then\
+  内容=\"获取失败\"\
+end\
+if(链接==nil) then\
+  弹出消息(\"服务器参数配置错误，请过段时间再次尝试\")\
+end\
+\
+if(版本 > versioncode) then\
+  dl.dismiss()\
+    tt.stop() \
+对话框()\
+.设置标题(\"检测到更新\")\
+.设置消息(\"版本：\"..version..\"→\"..版本名..\"\\n更新内容：\"..内容)\
+.设置积极按钮(\"下载更新\",function()\
+  下载文件(链接)\
+  弹出消息(\"下载更新中…\")\
+end)\
+.设置消极按钮(\"取消更新\")\
+.显示()\
+else\
+dl.dismiss()\
+    tt.stop()\
+弹出消息(\"当前已是最新版本！\")\
+end\
+end\
+Http.get(url,nil,\"UTF-8\",nil,function(code,content,cookie,header)\
+  if(code==200 and content)then\
+    content=content:match(\"\\\"html_content\\\":(.-),\"):gsub(\"\\\\u003C/?.-%>\",\"\"):gsub(\"\\\\\\\\\",\"&revs;\"):gsub(\"\\\\n\",\"\\n\"):gsub(\"&nbsp;\",\" \"):gsub(\"&lt;\",\"<\"):gsub(\"&gt;\",\">\"):gsub(\"&quot;\",\"\\\"\"):gsub(\"&apos;\",\"'\"):gsub(\"&revs;\",\"\\\\\"):gsub(\"&amp;\",\"&\");\
+    过滤(content)\
+  else\
+  dl.dismiss()\
+    tt.stop() \
+     弹出消息(\"本地网络或服务器异常 \"..code)\
+  end\
+end)\
+" ;
+              } ;
+          [7]	= {
+              ["name"]	= "开源地址" ;
+              ["onClick"]	= "加载网页(\"https://github.com/lruihao/Blog_client\")" ;
+              } ;
+          } ;
+      } ;
+  ["global_js"]	= "" ;
+  ["switch"]	= {
+      ["启用启动图"]	= true ;
+      ["显示状态栏"]	= true ;
+      ["横屏"]	= false ;
+      ["支持滑动页面"]	= true ;
+      } ;
+  ["sidebar"]	= {
+      ["启用"]	= true ;
+      ["启用顶部图片"]	= true ;
+      ["items"]	= {
+          [8]	= {
+              ["name"]	= "支持作者" ;
+              ["onClick"]	= "import \"android.content.Intent\"\
+import \"android.net.Uri\"\
+xpcall(function() \
+  local url=\"alipayqr://platformapi/startapp?saId=10000007&qrcode=HTTPS://QR.ALIPAY.COM/FKX090809LIWZWTU6HQ785\"\
+  activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)));\
+end,\
+function()\
+  local url = \"HTTPS://QR.ALIPAY.COM/FKX090809LIWZWTU6HQ785\";\
+  activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)));\
+end)\
+\
+弹出消息(\"你的支持就是我的动力！\")\
+弹出消息(\"捐赠后，捐赠者将会出现在捐赠页面！\")" ;
+              ["icon"]	= "drawable/currency_usd.png" ;
+              } ;
+          [1]	= {
+              ["name"]	= "PCVIEW" ;
+              ["onClick"]	= "进入子页面(\"blog-pc\")" ;
+              ["icon"]	= "drawable/laptop_chromebook.png" ;
+              } ;
+          [2]	= {
+              ["name"]	= "BLOG" ;
+              ["onClick"]	= "加载网页(\"https://lruihao.cn\")" ;
+              ["icon"]	= "drawable/book_open.png" ;
+              } ;
+          [3]	= {
+              ["name"]	= "网盘" ;
+              ["onClick"]	= "加载网页(\"https://pan.lruihao.cn\")" ;
+              ["icon"]	= "drawable/cloud_outline.png" ;
+              } ;
+          [4]	= {
+              ["name"]	= "Games" ;
+              ["onClick"]	= "进入子页面(\"Games\")" ;
+              ["icon"]	= "drawable/google_controller.png" ;
+              } ;
+          [5]	= {
+              ["name"]	= "留言" ;
+              ["onClick"]	= "加载网页(\"https://lruihao.cn/guestbook\")" ;
+              ["icon"]	= "drawable/comment_multipe_outline.png" ;
+              } ;
+          [6]	= {
+              ["name"]	= "zxm" ;
+              ["onClick"]	= "进入子页面(\"LOVE\")" ;
+              ["icon"]	= "drawable/heart_box_outline.png" ;
+              } ;
+          [7]	= {
+              ["name"]	= "自留地" ;
+              ["onClick"]	= "加载网页(\"https://lruihao.gitee.io\")" ;
+              ["icon"]	= "drawable/account_outline.png" ;
+              } ;
+          } ;
+      } ;
+  ["web_control"]	= {
+      } ;
+  ["bottomBar"]	= {
+      [1]	= {
+          ["text"]	= "HOME" ;
+          ["icon"]	= "drawable/home.png" ;
+          ["url"]	= "https://www.lruihao.cn" ;
+          ["statusBarColor"]	= "" ;
+          } ;
+      [2]	= {
+          ["text"]	= "ONLINE" ;
+          ["icon"]	= "drawable/atm.png" ;
+          ["url"]	= "https://chat.daovoice.io/?id=8a6701dd" ;
+          ["statusBarColor"]	= "" ;
+          } ;
+      } ;
+  ["view_attribute"]	= {
+      ["搜索栏阴影强度"]	= "2dp" ;
+      ["顶栏标题"]	= "博採眾長" ;
+      ["底栏高度"]	= "38dp" ;
+      ["搜索栏圆角弧度"]	= "2dp" ;
+      ["顶栏阴影强度"]	= "2dp" ;
+      ["侧滑栏宽度"]	= "240dp" ;
+      ["顶栏高度"]	= "40dp" ;
+      ["底栏图标大小"]	= "24dp" ;
+      } ;
+  ["web"]	= {
+      ["浏览器用户标识"]	= "默认" ;
+      ["网页沉浸"]	= true ;
+      ["启用进度条"]	= false ;
+      ["惰性加载"]	= true ;
+      ["默认广告标记标签"]	= "" ;
+      ["启用长按菜单"]	= true ;
+      ["customUa"]	= "" ;
+      ["支持打开外部应用"]	= true ;
+      } ;
+  ["events"]	= {
+      ["程序启动"]	= "\
+弹出消息(\"©2018 李瑞豪\")\
+\
+--顶栏搜索框\
+titleTvw.onClick=function()\
+  --输入对话框 \
+  InputLayout={\
+    LinearLayout;\
+    orientation=\"vertical\";\
+    Focusable=true,\
+    FocusableInTouchMode=true,\
+    {\
+      TextView;\
+      id=\"Prompt\",\
+      textSize=\"8sp\",\
+      layout_marginTop=\"3dp\",\
+      layout_marginBottom=\"-5dp\",\
+      layout_marginLeft=\"120dp\",\
+      layout_width=\"80%w\";\
+      layout_gravity=\"center\",\
+      text=\"www.lruihao.cn\"\
+    };\
+    {\
+      EditText;\
+      hint=\"SEARCH…\";\
+      layout_marginTop=\"5dp\";\
+      layout_width=\"60%w\";\
+      layout_gravity=\"center\",\
+      id=\"edit\";\
+    };\
+  };\
+\
+  AlertDialog.Builder(this)\
+  .setTitle(\"\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t博採眾長\")--webView.title\
+  .setView(loadlayout(InputLayout))\
+  .setPositiveButton(\"确定\",{onClick=function(v) \
+      加载网页(\"https://m.baidu.com/s?wd=\"..edit.text)\
+    end})\
+  .setNegativeButton(\"取消\",nil)\
+  .show()\
+  import \"android.view.View$OnFocusChangeListener\"\
+  edit.setOnFocusChangeListener(OnFocusChangeListener{ \
+    onFocusChange=function(v,hasFocus)\
+      if hasFocus then\
+        Prompt.setTextColor(0xFD009688)\
+      end\
+    end})\
+  end\
+\
+\
+--底栏跟随顶栏颜色\
+background = toolbarParent.getBackground()\
+color = background.getColor()\
+bmBar.setBackgroundColor(color)\
+\
+--以下代码是侧滑栏圆角，高度，宽度，和上下边距的代码。\
+function CircleButton(view,InsideColor,radiu)\
+  import \"android.graphics.drawable.GradientDrawable\"\
+  drawable = GradientDrawable() \
+  drawable.setShape(GradientDrawable.RECTANGLE) \
+  drawable.setColor(InsideColor)\
+  drawable.setCornerRadii({radiu,radiu,radiu,radiu,radiu,radiu,radiu,radiu});\
+  view.setBackgroundDrawable(drawable)\
+end\
+角度=30\
+控件id=sidebar\
+控件颜色=0xFFFFFFFF\
+CircleButton(控件id,控件颜色,角度)\
+\
+flt=sidebar.getLayoutParams( )\
+flt.setMargins(0,0,0,50)\
+sidebar.setLayoutParams(flt)\
+\
+--侧栏天气\
+local clr=\"#EE546E7A\"\
+sidebar.addView(loadlayout{\
+ LinearLayout,\
+ layout_width=\"fill\",\
+ layout_height=\"fill\",\
+ orientation=\"vertical\",\
+ gravity=\"bottom\",\
+ {\
+  LinearLayout,\
+  layout_width=\"fill\",\
+  layout_height=\"80dp\",\
+  {\
+   LinearLayout,\
+   orientation=\"vertical\",\
+   layout_width=\"fill\",\
+   layout_height=\"fill\",\
+   gravity=\"center\",\
+   {\
+    RelativeLayout,\
+    layout_width=\"fill\",\
+    {\
+     TextView,\
+     id=\"wtrt\",\
+     layout_centerInParent=true,\
+     textSize=\"25sp\",\
+     textColor=clr,\
+     text=\"-273.15\",\
+    },\
+    {\
+     TextView,\
+     layout_toRightOf=\"wtrt\",\
+     layout_alignTop=\"wtrt\",\
+     layout_marginLeft=\"2dp\",\
+     layout_marginTop=\"6dp\",\
+     textSize=\"10sp\",\
+     textColor=clr,\
+     text=\"℃\",\
+    },\
+   },\
+   {\
+    TextView,\
+    id=\"wtrd\",\
+    textSize=\"10sp\",\
+    textColor=clr,\
+    text=\"等待更新\",\
+   },\
+  },\
+ },\
+})\
+--感谢凌默提供的服务器\
+Http.get(\"http://0.funtimes.top/api/wtr.php?type=live&format=text&from=fusionapp\",nil,\"UTF-8\",nil,function(code,content,cookie,header)\
+ if code==200 and content then\
+  content=content:gsub(\"%s$\",\"\")\
+  if content:find(\"status: success\") then\
+   --将weather_description更改为weather，可以获得正常的天气现象描述\
+   wtrd.text=(string.gsub(tostring(content:match(\"city_name: [^\\n]+\")),\"^city_name: \",\"\")or \"禁地\")..\" \"..(string.gsub(tostring(content:match(\"weather: [^\\n]+\")),\"^weather: \",\"\")or \"暂无数据\")\
+   wtrt.text=string.gsub(tostring(content:match(\"temperature: [^\\n]+\")),\"^temperature: \",\"\")or \"-273.15\"\
+  else\
+   wtrd.text=\"更新失败\"\
+   弹出消息(\"无法获取天气信息\\\
+状态：\"..string.gsub(tostring(content:match(\"status: [^\\n]+\")),\"^status: \",\"\")..\"\\\
+描述如下：\\\
+\"..string.gsub(tostring(content:match(\"error_message: [^\\n]+\")),\"^error_message: \",\"\")..\"\\\
+\"..(string.gsub(tostring(content:match(\"error_note: [^\\n]+\")),\"^error_note: \",\"\")or \"\"))\
+  end\
+ else\
+  wtrd.text=\"更新失败\"\
+  弹出消息(\"天气信息请求失败 \"..code)\
+ end\
+end)\
+\
+\
+--自动，由物理感应器决定\
+import \"android.content.pm.ActivityInfo\"\
+flag=1\
+\
+\
+--程序退出时执行对话框\
+function onKeyDown(key,event)\
+  if(key==4)then\
+    if(webView.canGoBack())then\
+      webView.goBack()\
+    else\
+      appinfo=this.getPackageManager().getApplicationInfo(this.getPackageName(),0)\
+      applabel=this.getPackageManager().getApplicationLabel(appinfo)\
+      退出确认=对话框()\
+      .设置消息(\"您确定要退出 \"..applabel..\" 吗?\")\
+      退出按钮={\
+        [1]=function()\
+          退出确认\
+          .设置积极按钮(\"确认\",function()\
+            退出程序()\
+            end\
+             )\
+             .设置中立按钮(\"清除缓存\",function()\
+               对话框()\
+               .设置消息(\"清除缓存后再次运行程序将变得缓慢\\n您确定要清除 \"..applabel..\" 的缓存吗?\")\
+               .设置积极按钮(\"确定\",function()\
+                os.execute(\"pm clear \"..this.packageName)\
+                退出程序()\
+                end)\
+               .设置消极按钮(\"取消\",function()\
+                end)\
+              .显示()\
+             end\
+           )\
+          .设置消极按钮(\"取消\")\
+          end\
+        }      \
+      math.randomseed(tonumber(tostring(os.time()):reverse():sub(1, 6)))\
+      退出按钮[math.random(1,1)]()\
+      退出确认.show()\
+    end\
+    return true\
+  end\
+end\
+\
+\
+--历史记录\
+lstads=\"/data/data/\"..activity.getPackageName()..\"/lst.lua\"\
+lstwebads=\"/data/data/\"..activity.getPackageName()..\"/lstweb.lua\"\
+--2.序列化\
+function slz(obj) \
+  local lua = \"\" \
+  local t = type(obj) \
+  if t == \"number\" then \
+    lua = lua .. obj \
+  elseif t == \"boolean\" then \
+    lua = lua .. tostring(obj) \
+  elseif t == \"string\" then \
+    lua = lua .. string.format(\"%q\", obj) \
+  elseif t == \"table\" then \
+    lua = lua .. \"{\\n\" \
+    for k, v in pairs(obj) do \
+      lua = lua .. \"[\" .. slz(k) .. \"]=\" .. slz(v) .. \",\\n\" \
+    end \
+    local metatable = getmetatable(obj) \
+    if metatable ~= nil and type(metatable.__index) == \"table\" then \
+      for k, v in pairs(metatable.__index) do \
+        lua = lua .. \"[\" .. slz(k) .. \"]=\" .. slz(v) .. \",\\n\" \
+      end \
+    end \
+    lua = lua .. \"}\" \
+  elseif t == \"nil\" then \
+    return nil \
+  else \
+    error(\"can not serialize a \" .. t .. \" type.\") \
+  end \
+  return lua \
+end \
+function rslz(lua) \
+  local t = type(lua) \
+  if t == \"nil\" or lua == \"\" then \
+    return {}\
+  elseif t == \"number\" or t == \"string\" or t == \"boolean\" then \
+    lua = tostring(lua) \
+  else \
+    error(\"can not unserialize a \" .. t .. \" type.\") \
+  end \
+  lua = \"return \" .. lua \
+  local func = loadstring(lua) \
+  if func == nil then \
+    return nil \
+  end \
+  return func() \
+end\
+\
+--3.历史记录框布局\
+function hstshow()\
+  hstlayout={\
+    LinearLayout,\
+    orientation=\"1\",\
+    gravity=\"center\",\
+    layout_width=\"wrap_content\",\
+    layout_height=\"wrap_content\",\
+    {\
+      TextView,\
+      text=\"\",\
+      gravity=\"center\",\
+      layout_width=\"wrap_content\",\
+      textSize=\"0sp\",\
+      background=\"#000000\",\
+      layout_height=\"15dp\",},\
+    {\
+      TextView,\
+      text=\"历史记录\",\
+      gravity=\"center\",\
+      layout_width=\"wrap_content\",\
+      textSize=\"30sp\",\
+      textStyle=\"bold\",\
+      layout_height=\"50dp\",},\
+    {\
+      ListView,\
+      id=\"hlst\",\
+      items=lst,\
+      layout_width=\"fill\",\
+      layout_height=\"wrap_content\",\
+    },\
+  }\
+end\
+\
+\
+--##功能函数##\
+\
+--1.读取历史文件\
+function read_hst()\
+  import \"java.io.File\"\
+  File(lstads).createNewFile()\
+  slst=io.open(lstads):read(\"*a\")\
+  File(lstwebads).createNewFile()\
+  slstweb=io.open(lstwebads):read(\"*a\")\
+  --转换成table\
+  lst=rslz(slst)\
+  lstweb=rslz(slstweb)\
+end\
+\
+--2.新网页加入历史记录\
+function add_hst()\
+  if string.len(webView.getTitle())<=300 then--粗略过掉无效标题\
+    newtitle=webView.getTitle()\
+    newurl=webView.getUrl()\
+    table.insert(lst,1,newtitle) --标题表添加新标题\
+    table.insert(lstweb,1,newurl) --网址表添加新网址\
+  end\
+end\
+\
+--3.存储历史文件\
+function save_hst()\
+  --转换成string\
+  slst=slz(lst)\
+  slstweb=slz(lstweb)\
+  --保存\
+  file=io.open(lstads,\"w+\")\
+  io.output(file)\
+  io.write(slst)\
+  io.flush()\
+  io.close(file)\
+  file=io.open(lstwebads,\"w+\")\
+  io.output(file)\
+  io.write(slstweb)\
+  io.flush()\
+  io.close(file)\
+end\
+\
+--4.显示历史记录框\
+function show_hst() \
+  hstshow()\
+  local hl=AlertDialog.Builder(activity)\
+  .setView(loadlayout(hstlayout))\
+  .setNegativeButton(\"取消\",DialogInterface.OnClickListener{\
+    onClick=function()\
+    end\
+  })\
+  .create()\
+  hl.show()\
+  hlst.onItemClick=function(l,v,c,b)\
+    加载网页(lstweb[b])\
+    hl.dismiss()\
+  end\
+  hlst.onItemLongClick=function(l,v,c,b)\
+    hl.dismiss()\
+    对话框()\
+    .设置消息(\"是否删除记录？\")\
+    .设置消极按钮(\"取消\",function()\
+      show_hst()\
+    end)\
+    .设置积极按钮(\"确定\",function()\
+      table.remove(lst,b)\
+      table.remove(lstweb,b)\
+      save_hst()\
+      show_hst()\
+    end )\
+    .显示()\
+    return true\
+  end\
+end\
+--5.清除缓存\
+function clr()\
+  --导入File类\
+  import \"java.io.File\"\
+  --显示多选框\
+  items={\"浏览记录\",\"缓存文件\"}\
+  多选对话框=AlertDialog.Builder(this)\
+  .setTitle(\"清除记录\")\
+  --勾选后执行\
+  .setPositiveButton(\"确定\",function()\
+    if clearhistory==1 and clearall==1 then\
+      File(lstads).delete()\
+      File(lstwebads).delete()\
+      lst={}\
+      lstweb={}\
+      os.execute(\"pm clear \"..activity.getPackageName())\
+    elseif clearhistory==0 and clearall==1 then\
+      os.execute(\"pm clear \"..activity.getPackageName())\
+    elseif clearhistory==1 and clearall==0 then\
+      File(lstads).delete()\
+      File(lstwebads).delete()\
+      lst={}\
+      lstweb={}\
+    else return nil\
+    end\
+  end)\
+  --选择事件\
+  .setMultiChoiceItems(items, nil,{ onClick=function(v,p)\
+      --清除历史\
+      if p==0 then clearhistory=1\
+      end\
+      --清除缓存\
+      if p==1 then clearall=1\
+      end\
+    end})\
+  多选对话框.show();\
+  clearhistory=0\
+  clearall=0\
+end\
+\
+\
+activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);\
+--11.长按弹窗\
+function popwin(od)\
+  local win1=\"向上移动\"\
+  local win2=\"编辑\"\
+  local win3=\"向下移动\"\
+  local wina={win1,win2,win3}\
+  local winb={win2,win3}\
+  local winc={win1,win2}\
+  if od==1 then\
+    win=winb\
+  elseif od==#fav then\
+    win=winc\
+  else\
+    win=wina\
+  end\
+  winlayout={\
+    LinearLayout,\
+    orientation=\"vertical\",\
+    {ListView,\
+      id=\"winlv\",\
+      items=win,\
+      layout_width=\"fill_parent\",\
+      layout_height=\"wrap_content\",},\
+  }\
+  winl=AlertDialog.Builder(activity)\
+  .setView(loadlayout(winlayout))\
+  .create()\
+  winl.show()\
+  winlv.onItemClick=function(l,v,c,b)\
+    if win[b]==win1 then\
+      fl.dismiss()\
+      upfav(od)\
+    elseif win[b]==win2 then\
+      fl.dismiss()\
+      show_efav(od)\
+    elseif win[b]==win3 then\
+      fl.dismiss()\
+      downfav(od)\
+    end\
+    winl.dismiss()\
+  end\
+end\
+function downfav(b)\
+  if b~=#fav then\
+    dfav=fav[b]\
+    dfavweb=favweb[b]\
+    table.remove(fav,b)\
+    table.remove(favweb,b)\
+    table.insert(fav,b+1,dfav)\
+    table.insert(favweb,b+1,dfavweb)\
+  end\
+  save_fav()\
+  show_fav()\
+end\
+\
+\
+\
+--加入收藏\
+function getAllData(name)\
+  local data={}\
+  for d in each(this.getApplicationContext().getSharedPreferences(name,0).getAll().entrySet()) do\
+    data[d.getKey()]=d.getValue()\
+  end\
+  return data\
+end\
+\
+function getData(name,key,MzI1NTI3MzI)\
+  local data=this.getApplicationContext().getSharedPreferences(name,0).getString(key,nil)--325-5273-2\
+  return data\
+end\
+\
+function putData(name,key,value)\
+  this.getApplicationContext().getSharedPreferences(name,0).edit().putString(key,value).apply()--3255-2732\
+  return true\
+end\
+\
+function removeData(name,key)\
+  this.getApplicationContext().getSharedPreferences(name,32552732*0).edit().remove(key).apply()--[[3(2)6?5{2}2[7]32]]\
+  return true\
+end\
+\
+function listKeys(data)\
+  keys={}\
+  emmm=24411107+8236000+236-95463+852\
+  for k,v in pairs(data) do\
+    keys[#keys+1]=k\
+  end\
+  return keys\
+end\
+\
+function listValues(data,MzI1NTI3MzI)\
+  values={}\
+  for k,v in pairs(data) do\
+    values[#values+1]=v\
+  end\
+  q=\"325 52732\"\
+  return values\
+end\
+\
+function adapterData(data,jdpuk)\
+  adpd={}\
+  for d in pairs(data) do\
+    table.insert(adpd,{\
+      text={\
+        Text=tostring(data[d]), \
+      }, \
+    })\
+  end\
+  return adpd\
+end\
+\
+local listlayout={\
+  LinearLayout,\
+  orientation=\"1\",\
+  layout_width=\"fill\",\
+  layout_height=\"wrap_content\",\
+  {\
+    ListView,\
+    id=\"list\",\
+    layout_marginTop=\"10dp\",\
+    --items={\"3\",\"2\",\"5\",\"5\",\"2\",\"7\",\"3\",\"2\"},\
+    layout_width=\"fill\",\
+    layout_height=\"wrap_content\",\
+  }\
+}\
+\
+local inputlayout={\
+  LinearLayout,\
+  orientation=\"vertical\",\
+  Focusable=true,\
+  FocusableInTouchMode=true,\
+  {\
+    EditText,\
+    id=\"edit\",\
+    hint=\"Input here\",\
+    layout_marginTop=\"5dp\",\
+    layout_width=\"80%w\",\
+    --uh=\"32552732\",\
+    layout_gravity=\"center\",\
+  },\
+}\
+\
+local input2layout={\
+  LinearLayout,\
+  orientation=\"vertical\",\
+  Focusable=true,\
+  FocusableInTouchMode=true,\
+  {\
+    EditText,\
+    id=\"edit1\",\
+    hint=\"Input here\",\
+    --numa=\"32552\",\
+    --aaa=\"bbb\"\
+    layout_marginTop=\"5dp\",\
+    layout_width=\"80%w\",\
+    layout_gravity=\"center\",\
+  },\
+  {\
+    EditText,\
+    id=\"edit2\",\
+    --ccc=\"ddd\",\
+    --numb=\"732\",\
+    --eee=\"fff\",\
+    hint=\"Input here\",\
+    layout_margiTop=\"5dp\",\
+    layout_width=\"80%w\",\
+    layout_gravity=\"center\",\
+  },\
+}\
+\
+function showDataDialog(name,title,jdpuk)\
+\
+  local data=getAllData(name)\
+  local keys=listKeys(data)\
+  local values=listValues(data)\
+\
+  item={\
+    LinearLayout,\
+    orientation=\"vertical\",\
+    layout_width=\"fill\",\
+    {\
+      TextView,\
+      id=\"text\",\
+      textSize=\"16sp\",\
+      layout_margin=\"10dp\",\
+      layout_width=\"fill\",\
+      layout_width=\"70%w\",\
+      layout_gravity=\"center\",\
+    },\
+  }\
+\
+  local adpd=adapterData(values)\
+  local items=LuaAdapter(this,adpd,item)\
+\
+  local dlb=对话框()\
+  dlb.设置标题(title)\
+  local dl\
+  if #keys>0 then\
+    dlb.setView(loadlayout(listlayout))\
+    list.setDividerHeight(0)\
+    list.Adapter=items\
+    list.onItemClick=function(adp,view,position,id)--3255273 2\
+      webView.loadUrl(keys[id])\
+      if dl then\
+        dl.dismiss()\
+      end\
+    end\
+    list.onItemLongClick=function(adp,view,pos,id)--325 52732\
+      对话框()\
+      .设置标题(title)\
+      .setView(loadlayout(input2layout))\
+      .设置积极按钮(\"保存\",function()--32552732\
+        if not(edit1.text==\"\") and not(edit2.text==\"\") or 3255==2732 then\
+          removeData(name,keys[id])\
+          putData(name,edit2.text,edit1.text)--32552732\
+          if dl then\
+            dl.dismiss()\
+            showDataDialog(name,title)\
+          end\
+        else\
+          弹出消息(\"请填写所有字段\")\
+        end\
+      end)\
+      .设置消极按钮(\"取消\")\
+      .设置中立按钮(\"删除\",function()\
+        removeData(name,keys[id])\
+        items.remove(pos)\
+        table.remove(keys,id)\
+        table.remove(values,id)\
+        if #adpd<=0 then\
+          if dl then\
+            dl.dismiss()\
+            showDataDialog(name,title);\
+          end\
+        end\
+      end)\
+      .显示()\
+      edit1.setHint(\"标题\")\
+      edit2.setHint(\"链接\")\
+      edit1.setText(values[id])\
+      edit2.setText(keys[id])\
+      return true\
+    end\
+  else\
+    dlb.设置消息(\"没有收藏\")\
+  end\
+  dlb.设置积极按钮(\"新建收藏\",function()addDataDialog(name,\"新建收藏\")end)\
+  dl=dlb.show()\
+end\
+\
+function addDataDialog(name,title,value,key)--32552732\
+  对话框()\
+  .设置标题(title)\
+  .setView(loadlayout(input2layout))\
+  .设置积极按钮(\"保存\",function()\
+    if not(edit1.text==\"\") and not(edit2.text==\"\") or 325==52732 then\
+      if not getData(name,edit2.text) then\
+        putData(name,edit2.text,edit1.text)\
+      else\
+        弹出消息(\"该链接已存在\")\
+        addDataDialog(name,title,edit1.text,edit2.text)\
+      end\
+    else\
+      弹出消息(\"请填写所有字段\")\
+      addDataDialog(name,title,edit1.text,edit2.text)\
+    end\
+  end)\
+  .设置消极按钮(\"取消\")\
+  .显示()\
+  edit1.setHint(\"标题\")\
+  edit2.setHint(\"链接\")\
+  if(value)then\
+    edit1.setText(value)\
+  end\
+  if(key)then\
+    edit2.setText(key)\
+  end\
+end" ;
+      ["网页即将加载"]	= "--浏览器即将加载新的网页时执行的事件\
+\
+--接收参数\
+浏览器对象,网页链接=..." ;
+      ["收到新标题"]	= "--浏览器加载新页面并获得新标题时执行的事件\
+\
+--接收参数\
+新标题=...\
+\
+read_hst()\
+--加入历史记录\
+add_hst()\
+--存储历史文件\
+save_hst()\
+-- io.open(lstads,\"w+\"):write(lsts):close()\
+-- io.open(lstwebads,\"w+\"):write(lstwebs):close()" ;
+      ["网页加载完毕"]	= "--网页加载完毕后执行的事件\
+\
+--接收参数\
+浏览器对象,网页链接=...\
+\
+--底栏顶栏跟随网页变色(网页沉浸)\
+function getBitmapFromView(v) \
+  b = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.RGB_565); \
+  c = Canvas(b); \
+  v.layout(v.getLeft(), v.getTop(), v.getRight(), v.getBottom()); \
+  bgDrawable = v.getBackground(); \
+  if (bgDrawable ~= null) then\
+    bgDrawable.draw(c); \
+  else \
+    c.drawColor(Color.WHITE); \
+    v.draw(c); \
+  end\
+  return b;\
+end\
+\
+bitmap = getBitmapFromView(webView)\
+pixel = bitmap.getPixel(650,900)\
+redValue = Color.red(pixel)\
+greenValue = Color.green(pixel)\
+blueValue = Color.blue(pixel)\
+bmBar.setBackgroundColor(pixel)\
+--顶栏使用自带的\
+--toolbarParent.setBackgroundColor(pixel)\
+bitmap.recycle()\
+--其他控件也可以跟随变色，自己加\
+--如果获取的颜色不是你要的，自己改坐标\
+" ;
+      } ;
+  ["colors"]	= {
+      ["导航栏"]	= "#ff2c2e43" ;
+      ["顶栏部件触摸"]	= "#22000000" ;
+      ["搜索栏背景"]	= "#ffffffff" ;
+      ["侧滑栏背景"]	= "#ffffffff" ;
+      ["底栏图标"]	= "#ff757575" ;
+      ["底栏图标触摸波纹"]	= "#24000000" ;
+      ["悬浮按钮图标"]	= "#FFFFFF" ;
+      ["搜索栏部件触摸"]	= "#44000000" ;
+      ["顶栏"]	= "#ff333333" ;
+      ["进度条"]	= "#00000000" ;
+      ["侧滑栏列表文字"]	= "#ff333333" ;
+      ["底栏"]	= "#ffffffff" ;
+      ["顶栏部件"]	= "#ffffffff" ;
+      ["搜索栏提示文字"]	= "#80000000" ;
+      ["侧滑栏列表图标"]	= "#ff757575" ;
+      ["底栏图标选中"]	= "#ff33a7aa" ;
+      ["搜索栏部件"]	= "#ff888888" ;
+      } ;
+  } ;

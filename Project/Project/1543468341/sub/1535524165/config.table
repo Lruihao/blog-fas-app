@@ -1,0 +1,71 @@
+{
+  ["web_control"]	= {
+      } ;
+  ["web"]	= {
+      ["支持打开外部应用"]	= true ;
+      ["浏览器用户标识"]	= "默认" ;
+      ["启用进度条"]	= false ;
+      ["网页沉浸"]	= true ;
+      ["启动网页"]	= "https://lruihao.cn/love" ;
+      ["启用长按菜单"]	= false ;
+      } ;
+  ["events"]	= {
+      ["收到新标题"]	= "--浏览器加载新页面并获得新标题时执行的事件\
+\
+--接收参数\
+浏览器对象,新标题=..." ;
+      ["网页加载完毕"]	= "--网页加载完毕后执行的事件\
+\
+--接收参数\
+浏览器对象,网页链接=..." ;
+      ["程序启动"]	= "--程序启动时会执行的事件\
+弹出消息(\"这一页是单独写给张湘敏的💗\")\
+\
+function 物理效果(id,灵敏度)\
+  if not (__IIll00oo==nil)then\
+    error(\"此代码仅允许运行一次，若需对多个控件操作的，请在id处输入一个table\")\
+  end\
+  if not (type(id)==\"table\")then\
+    __IIll00oo={}\
+    table.insert(__IIll00oo,id)\
+   else\
+    __IIll00oo=id\
+  end\
+  local l = 灵敏度 or 1\
+  require \"import\"\
+  import \"android.content.Context\"\
+  import \"android.hardware.Sensor\"\
+  import \"android.hardware.SensorEvent\"\
+  import \"android.hardware.SensorEventListener\"\
+  import \"android.hardware.SensorManager\"\
+  local x轴,y轴,z轴\
+  传感器 = activity.getSystemService(Context.SENSOR_SERVICE)\
+  local 加速度传感器 = 传感器.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)\
+  传感器.registerListener(SensorEventListener({\
+    onSensorChanged=function(event)\
+      local x轴 = event.values[0]\
+      local y轴 = event.values[1]\
+      local z轴 = event.values[2]\
+      for v,k in pairs(__IIll00oo) do\
+        k.setRotationX(y轴*l)\
+        k.setRotationY(x轴*l)\
+      end\
+    end,nil}), 加速度传感器, SensorManager.SENSOR_DELAY_NORMAL)\
+end\
+物理效果({webView,titleTvw},3)" ;
+      ["网页即将加载"]	= "--浏览器即将加载新的网页时执行的事件\
+\
+--接收参数\
+浏览器对象,网页链接=..." ;
+      } ;
+  ["colors"]	= {
+      ["导航栏"]	= "#ff33a7aa" ;
+      ["进度条"]	= "#00000000" ;
+      ["状态栏"]	= "#ffffffff" ;
+      } ;
+  ["switch"]	= {
+      ["横屏"]	= false ;
+      ["显示状态栏"]	= true ;
+      ["启用启动图"]	= false ;
+      } ;
+  } ;
