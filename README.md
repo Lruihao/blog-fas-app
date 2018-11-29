@@ -22,7 +22,7 @@
 * [直链](http://ss.uixsj.cn/bczc_2.2.5_beta.apk)
 * [百度云，密码:29p5](https://pan.baidu.com/s/19iyxHQ6kQjj3eJ0fS3ZDXw)
 
-### 相关
+### 相关项目
 * [博採眾長](https://github.com/lruihao/lruihao.github.io)
 * [RUI豪小栈](https://github.com/lruihao/rui-site)
 
