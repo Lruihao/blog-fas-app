@@ -1,7 +1,7 @@
 # Blog_client
 
 ### 介绍
-> 使用fusion app对网页进行的封装。
+> 使用fusion app对网页进行的封装。    
 > 主要用到html+css+js等前端美化，通过hexo+next搭建博客，再通过lua语言实现一些基本功能(其中调用了一些android和java的包)    
 > 一个对博客网页封装的安卓app  
 > 使用字符串匹配QQ收藏文档相关关键词，简陋地支持在线更新🌝    
