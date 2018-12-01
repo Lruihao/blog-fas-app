@@ -1,27 +1,51 @@
 {
+  ["colors"]	= {
+      ["顶栏"]	= "#ff333333" ;
+      ["导航栏"]	= "#ff2c2e43" ;
+      ["悬浮按钮图标"]	= "#FFFFFF" ;
+      ["底栏图标触摸波纹"]	= "#24000000" ;
+      ["侧滑栏列表文字"]	= "#ff333333" ;
+      ["侧滑栏背景"]	= "#ffffffff" ;
+      ["顶栏部件"]	= "#ffffffff" ;
+      ["搜索栏提示文字"]	= "#80000000" ;
+      ["搜索栏背景"]	= "#ffffffff" ;
+      ["侧滑栏列表图标"]	= "#ff757575" ;
+      ["顶栏部件触摸"]	= "#22000000" ;
+      ["搜索栏部件"]	= "#ff888888" ;
+      ["搜索栏部件触摸"]	= "#44000000" ;
+      ["底栏图标"]	= "#ff757575" ;
+      ["底栏"]	= "#ffffffff" ;
+      ["底栏图标选中"]	= "#ff33a7aa" ;
+      ["进度条"]	= "#00000000" ;
+      } ;
+  ["web"]	= {
+      ["惰性加载"]	= true ;
+      ["customUa"]	= "" ;
+      ["网页沉浸"]	= true ;
+      ["启用长按菜单"]	= true ;
+      ["默认广告标记标签"]	= "" ;
+      ["支持打开外部应用"]	= true ;
+      ["启用进度条"]	= false ;
+      ["浏览器用户标识"]	= "默认" ;
+      } ;
   ["toolbar"]	= {
-      ["搜索框提示"]	= "" ;
-      ["输入栏模式"]	= false ;
-      ["启用搜索功能"]	= false ;
-      ["搜索URL"]	= "" ;
-      ["搜索功能"]	= false ;
       ["icon_btns"]	= {
           [2]	= {
-              ["icon"]	= "refresh" ;
               ["onClick"]	= "刷新网页()" ;
+              ["icon"]	= "refresh" ;
               } ;
           [1]	= {
-              ["icon"]	= "bookmark_outline" ;
               ["onClick"]	= "addDataDialog(\"Collection\",\"加入收藏\",webView.getTitle(),webView.getUrl())" ;
+              ["icon"]	= "bookmark_outline" ;
               } ;
           } ;
+      ["搜索框提示"]	= "" ;
       ["menus"]	= {
           [1]	= {
-              ["name"]	= "分享链接" ;
               ["onClick"]	= "分享文本(webView.getUrl())" ;
+              ["name"]	= "分享链接" ;
               } ;
           [2]	= {
-              ["name"]	= "方向锁定" ;
               ["onClick"]	= "if flag==1 then\
   activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);\
   SetHSP=\"H\"\
@@ -40,9 +64,9 @@ end\
 \
 \
 " ;
+              ["name"]	= "方向锁定" ;
               } ;
           [3]	= {
-              ["name"]	= "夜间模式" ;
               ["onClick"]	= "--将aaa修改成你自己的默认颜值\
 \
 local aaa=\"#FFF3F3F3\"   --默认顶栏颜色aaa\
@@ -67,18 +91,18 @@ toolbarParent.setBackgroundColor(Color.parseColor(\"#ff212121\"));\
     css.href = 'data:text/css,html,body,header,div,a,span,table,tr,td,th,tbody,p,form,input,ul,ol,li,dl,dt,dd,section,footer,nav,h1,h2,h3,h4,h5,h6,em,pre{background: #333 !important;color:#616161!important;border-color:#454530!important;text-shadow:0!important;-webkit-text-fill-color : none!important;}html a,html a *{color:#5a8498!important;text-decoration:underline!important;}html a:visited,html a:visited *,html a:active,html a:active *{color:#505f64!important;}html a:hover,html a:hover *{color:#cef!important;}html input,html select,html button,html textarea{background:#4d4c40!important;border:1px solid #5c5a46!important;border-top-color:#494533!important;border-bottom-color:#494533!important;}html input[type=button],html input[type=submit],html input[type=reset],html input[type=image],html button{border-top-color:#494533!important;border-bottom-color:#494533!important;}html input:focus,html select:focus,html option:focus,html button:focus,html textarea:focus{background:#5c5b3e!important;color:#fff!important;border-color:#494100 #635d00 #474531!important;outline:1px solid #041d29!important;}html input[type=button]:focus,html input[type=submit]:focus,html input[type=reset]:focus,html input[type=image]:focus,html button:focus{border-color:#494533 #635d00 #474100!important;}html input[type=radio]{background:none!important;border-color:#333!important;border-width:0!important;}html img[src],html input[type=image]{opacity:.5;}html img[src]:hover,html input[type=image]:hover{opacity:1;}html,html body {scrollbar-base-color: #4d4c40 !important;scrollbar-face-color: #5a5b3c !important;scrollbar-shadow-color: #5a5b3c !important;scrollbar-highlight-color: #5c5b3c !important;scrollbar-dlight-color: #5c5b3c !important;scrollbar-darkshadow-color: #474531 !important;scrollbar-track-color: #4d4c40 !important;scrollbar-arrow-color: #000 !important;scrollbar-3dlight-color: #6a6957 !important;}dt a{background-color: #333 !important;}';   document.getElementsByTagName('head')[0].appendChild(css);  \
 };]])\
 end" ;
+              ["name"]	= "夜间模式" ;
               } ;
           [4]	= {
-              ["name"]	= "书签管理" ;
               ["onClick"]	= "showDataDialog(\"Collection\",\"收藏\")" ;
+              ["name"]	= "书签管理" ;
               } ;
           [5]	= {
-              ["name"]	= "历史记录" ;
               ["onClick"]	= "--打开历史记录\
 show_hst()" ;
+              ["name"]	= "历史记录" ;
               } ;
           [6]	= {
-              ["name"]	= "检测更新" ;
               ["onClick"]	= "--检查测当前是否最新版本\
 local dl=ProgressDialog.show(activity,nil,'更新检测中…')\
 dl.show()\
@@ -136,117 +160,89 @@ Http.get(url,nil,\"UTF-8\",nil,function(code,content,cookie,header)\
   end\
 end)\
 " ;
+              ["name"]	= "检测更新" ;
               } ;
           [7]	= {
-              ["name"]	= "开源地址" ;
               ["onClick"]	= "加载网页(\"https://github.com/lruihao/Blog_client\")" ;
+              ["name"]	= "开源地址" ;
               } ;
           } ;
+      ["输入栏模式"]	= false ;
+      ["搜索功能"]	= false ;
+      ["启用搜索功能"]	= false ;
+      ["搜索URL"]	= "" ;
       } ;
   ["global_js"]	= "" ;
   ["switch"]	= {
-      ["启用启动图"]	= true ;
-      ["显示状态栏"]	= true ;
-      ["横屏"]	= false ;
       ["支持滑动页面"]	= true ;
-      } ;
-  ["sidebar"]	= {
-      ["启用"]	= true ;
-      ["启用顶部图片"]	= true ;
-      ["items"]	= {
-          [8]	= {
-              ["name"]	= "支持作者" ;
-              ["onClick"]	= "import \"android.content.Intent\"\
-import \"android.net.Uri\"\
-xpcall(function() \
-  local url=\"alipayqr://platformapi/startapp?saId=10000007&qrcode=HTTPS://QR.ALIPAY.COM/FKX090809LIWZWTU6HQ785\"\
-  activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)));\
-end,\
-function()\
-  local url = \"HTTPS://QR.ALIPAY.COM/FKX090809LIWZWTU6HQ785\";\
-  activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)));\
-end)\
-\
-弹出消息(\"你的支持就是我的动力！\")\
-弹出消息(\"捐赠后，捐赠者将会出现在捐赠页面！\")" ;
-              ["icon"]	= "drawable/currency_usd.png" ;
-              } ;
-          [1]	= {
-              ["name"]	= "PCVIEW" ;
-              ["onClick"]	= "进入子页面(\"blog-pc\")" ;
-              ["icon"]	= "drawable/laptop_chromebook.png" ;
-              } ;
-          [2]	= {
-              ["name"]	= "BLOG" ;
-              ["onClick"]	= "加载网页(\"https://lruihao.cn\")" ;
-              ["icon"]	= "drawable/book_open.png" ;
-              } ;
-          [3]	= {
-              ["name"]	= "网盘" ;
-              ["onClick"]	= "加载网页(\"https://pan.lruihao.cn\")" ;
-              ["icon"]	= "drawable/cloud_outline.png" ;
-              } ;
-          [4]	= {
-              ["name"]	= "Games" ;
-              ["onClick"]	= "进入子页面(\"Games\")" ;
-              ["icon"]	= "drawable/google_controller.png" ;
-              } ;
-          [5]	= {
-              ["name"]	= "留言" ;
-              ["onClick"]	= "加载网页(\"https://lruihao.cn/guestbook\")" ;
-              ["icon"]	= "drawable/comment_multipe_outline.png" ;
-              } ;
-          [6]	= {
-              ["name"]	= "zxm" ;
-              ["onClick"]	= "进入子页面(\"LOVE\")" ;
-              ["icon"]	= "drawable/heart_box_outline.png" ;
-              } ;
-          [7]	= {
-              ["name"]	= "自留地" ;
-              ["onClick"]	= "加载网页(\"https://lruihao.gitee.io\")" ;
-              ["icon"]	= "drawable/account_outline.png" ;
-              } ;
-          } ;
+      ["启用启动图"]	= true ;
+      ["横屏"]	= false ;
+      ["显示状态栏"]	= true ;
       } ;
   ["web_control"]	= {
       } ;
-  ["bottomBar"]	= {
-      [1]	= {
-          ["text"]	= "HOME" ;
-          ["icon"]	= "drawable/home.png" ;
-          ["url"]	= "https://www.lruihao.cn" ;
-          ["statusBarColor"]	= "" ;
-          } ;
-      [2]	= {
-          ["text"]	= "ONLINE" ;
-          ["icon"]	= "drawable/atm.png" ;
-          ["url"]	= "https://chat.daovoice.io/?id=8a6701dd" ;
-          ["statusBarColor"]	= "" ;
-          } ;
-      } ;
   ["view_attribute"]	= {
-      ["搜索栏阴影强度"]	= "2dp" ;
-      ["顶栏标题"]	= "博採眾長" ;
-      ["底栏高度"]	= "38dp" ;
-      ["搜索栏圆角弧度"]	= "2dp" ;
       ["顶栏阴影强度"]	= "2dp" ;
+      ["搜索栏阴影强度"]	= "2dp" ;
       ["侧滑栏宽度"]	= "240dp" ;
+      ["搜索栏圆角弧度"]	= "2dp" ;
+      ["底栏高度"]	= "38dp" ;
       ["顶栏高度"]	= "40dp" ;
+      ["顶栏标题"]	= "博採眾長" ;
       ["底栏图标大小"]	= "24dp" ;
       } ;
-  ["web"]	= {
-      ["浏览器用户标识"]	= "默认" ;
-      ["网页沉浸"]	= true ;
-      ["启用进度条"]	= false ;
-      ["惰性加载"]	= true ;
-      ["默认广告标记标签"]	= "" ;
-      ["启用长按菜单"]	= true ;
-      ["customUa"]	= "" ;
-      ["支持打开外部应用"]	= true ;
-      } ;
   ["events"]	= {
+      ["网页加载完毕"]	= "--网页加载完毕后执行的事件\
+\
+--接收参数\
+浏览器对象,网页链接=...\
+\
+--底栏顶栏跟随网页变色(网页沉浸)\
+function getBitmapFromView(v) \
+  b = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.RGB_565); \
+  c = Canvas(b); \
+  v.layout(v.getLeft(), v.getTop(), v.getRight(), v.getBottom()); \
+  bgDrawable = v.getBackground(); \
+  if (bgDrawable ~= null) then\
+    bgDrawable.draw(c); \
+  else \
+    c.drawColor(Color.WHITE); \
+    v.draw(c); \
+  end\
+  return b;\
+end\
+\
+bitmap = getBitmapFromView(webView)\
+pixel = bitmap.getPixel(650,900)\
+redValue = Color.red(pixel)\
+greenValue = Color.green(pixel)\
+blueValue = Color.blue(pixel)\
+bmBar.setBackgroundColor(pixel)\
+--顶栏使用自带的\
+--toolbarParent.setBackgroundColor(pixel)\
+bitmap.recycle()\
+--其他控件也可以跟随变色，自己加\
+--如果获取的颜色不是你要的，自己改坐标\
+" ;
+      ["收到新标题"]	= "--浏览器加载新页面并获得新标题时执行的事件\
+\
+--接收参数\
+新标题=...\
+\
+read_hst()\
+--加入历史记录\
+add_hst()\
+--存储历史文件\
+save_hst()\
+-- io.open(lstads,\"w+\"):write(lsts):close()\
+-- io.open(lstwebads,\"w+\"):write(lstwebs):close()" ;
+      ["网页即将加载"]	= "--浏览器即将加载新的网页时执行的事件\
+\
+--接收参数\
+浏览器对象,网页链接=..." ;
       ["程序启动"]	= "\
 弹出消息(\"©2018 李瑞豪\")\
+\
 \
 --顶栏搜索框\
 titleTvw.onClick=function()\
@@ -281,8 +277,14 @@ titleTvw.onClick=function()\
   .setTitle(\"\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t博採眾長\")--webView.title\
   .setView(loadlayout(InputLayout))\
   .setPositiveButton(\"确定\",{onClick=function(v) \
-      加载网页(\"https://m.baidu.com/s?wd=\"..edit.text)\
-    end})\
+      if(edit.text:find\"http\") then \
+         加载网页(edit.text)\
+      elseif(edit.text:find\"file\") then \
+         加载网页(edit.text)\
+      else\
+         加载网页(\"https://m.baidu.com/s?word=\"..edit.text)\
+      end\
+   end})\
   .setNegativeButton(\"取消\",nil)\
   .show()\
   import \"android.view.View$OnFocusChangeListener\"\
@@ -915,72 +917,77 @@ function addDataDialog(name,title,value,key)--32552732\
     edit2.setText(key)\
   end\
 end" ;
-      ["网页即将加载"]	= "--浏览器即将加载新的网页时执行的事件\
-\
---接收参数\
-浏览器对象,网页链接=..." ;
-      ["收到新标题"]	= "--浏览器加载新页面并获得新标题时执行的事件\
-\
---接收参数\
-新标题=...\
-\
-read_hst()\
---加入历史记录\
-add_hst()\
---存储历史文件\
-save_hst()\
--- io.open(lstads,\"w+\"):write(lsts):close()\
--- io.open(lstwebads,\"w+\"):write(lstwebs):close()" ;
-      ["网页加载完毕"]	= "--网页加载完毕后执行的事件\
-\
---接收参数\
-浏览器对象,网页链接=...\
-\
---底栏顶栏跟随网页变色(网页沉浸)\
-function getBitmapFromView(v) \
-  b = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.RGB_565); \
-  c = Canvas(b); \
-  v.layout(v.getLeft(), v.getTop(), v.getRight(), v.getBottom()); \
-  bgDrawable = v.getBackground(); \
-  if (bgDrawable ~= null) then\
-    bgDrawable.draw(c); \
-  else \
-    c.drawColor(Color.WHITE); \
-    v.draw(c); \
-  end\
-  return b;\
-end\
-\
-bitmap = getBitmapFromView(webView)\
-pixel = bitmap.getPixel(650,900)\
-redValue = Color.red(pixel)\
-greenValue = Color.green(pixel)\
-blueValue = Color.blue(pixel)\
-bmBar.setBackgroundColor(pixel)\
---顶栏使用自带的\
---toolbarParent.setBackgroundColor(pixel)\
-bitmap.recycle()\
---其他控件也可以跟随变色，自己加\
---如果获取的颜色不是你要的，自己改坐标\
-" ;
       } ;
-  ["colors"]	= {
-      ["导航栏"]	= "#ff2c2e43" ;
-      ["顶栏部件触摸"]	= "#22000000" ;
-      ["搜索栏背景"]	= "#ffffffff" ;
-      ["侧滑栏背景"]	= "#ffffffff" ;
-      ["底栏图标"]	= "#ff757575" ;
-      ["底栏图标触摸波纹"]	= "#24000000" ;
-      ["悬浮按钮图标"]	= "#FFFFFF" ;
-      ["搜索栏部件触摸"]	= "#44000000" ;
-      ["顶栏"]	= "#ff333333" ;
-      ["进度条"]	= "#00000000" ;
-      ["侧滑栏列表文字"]	= "#ff333333" ;
-      ["底栏"]	= "#ffffffff" ;
-      ["顶栏部件"]	= "#ffffffff" ;
-      ["搜索栏提示文字"]	= "#80000000" ;
-      ["侧滑栏列表图标"]	= "#ff757575" ;
-      ["底栏图标选中"]	= "#ff33a7aa" ;
-      ["搜索栏部件"]	= "#ff888888" ;
+  ["bottomBar"]	= {
+      [1]	= {
+          ["url"]	= "https://www.lruihao.cn" ;
+          ["icon"]	= "drawable/home.png" ;
+          ["statusBarColor"]	= "" ;
+          ["text"]	= "HOME" ;
+          } ;
+      [2]	= {
+          ["url"]	= "https://chat.daovoice.io/?id=8a6701dd" ;
+          ["icon"]	= "drawable/atm.png" ;
+          ["statusBarColor"]	= "" ;
+          ["text"]	= "ONLINE" ;
+          } ;
+      } ;
+  ["sidebar"]	= {
+      ["启用"]	= true ;
+      ["items"]	= {
+          [8]	= {
+              ["icon"]	= "drawable/currency_usd.png" ;
+              ["name"]	= "支持作者" ;
+              ["onClick"]	= "import \"android.content.Intent\"\
+import \"android.net.Uri\"\
+xpcall(function() \
+  local url=\"alipayqr://platformapi/startapp?saId=10000007&qrcode=HTTPS://QR.ALIPAY.COM/FKX090809LIWZWTU6HQ785\"\
+  activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)));\
+end,\
+function()\
+  local url = \"HTTPS://QR.ALIPAY.COM/FKX090809LIWZWTU6HQ785\";\
+  activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)));\
+end)\
+\
+弹出消息(\"你的支持就是我的动力！\")\
+弹出消息(\"捐赠后，捐赠者将会出现在捐赠页面！\")" ;
+              } ;
+          [1]	= {
+              ["icon"]	= "drawable/laptop_chromebook.png" ;
+              ["name"]	= "PC浏览器" ;
+              ["onClick"]	= "进入子页面(\"blog-pc\")" ;
+              } ;
+          [2]	= {
+              ["icon"]	= "drawable/heart_box_outline.png" ;
+              ["name"]	= "重力浏览器" ;
+              ["onClick"]	= "进入子页面(\"zhongli\")" ;
+              } ;
+          [3]	= {
+              ["icon"]	= "drawable/book_open.png" ;
+              ["name"]	= "博採眾長" ;
+              ["onClick"]	= "加载网页(\"https://lruihao.cn\")" ;
+              } ;
+          [4]	= {
+              ["icon"]	= "drawable/cloud_outline.png" ;
+              ["name"]	= "网盘" ;
+              ["onClick"]	= "加载网页(\"https://pan.lruihao.cn\")" ;
+              } ;
+          [5]	= {
+              ["icon"]	= "drawable/google_controller.png" ;
+              ["name"]	= "游戏馆" ;
+              ["onClick"]	= "进入子页面(\"Games\")" ;
+              } ;
+          [6]	= {
+              ["icon"]	= "drawable/comment_multipe_outline.png" ;
+              ["name"]	= "留言" ;
+              ["onClick"]	= "加载网页(\"https://lruihao.cn/guestbook\")" ;
+              } ;
+          [7]	= {
+              ["icon"]	= "drawable/account_outline.png" ;
+              ["name"]	= "自留地" ;
+              ["onClick"]	= "加载网页(\"https://lruihao.gitee.io\")" ;
+              } ;
+          } ;
+      ["启用顶部图片"]	= true ;
       } ;
   } ;
