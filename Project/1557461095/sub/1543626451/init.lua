@@ -1,0 +1,2 @@
+name="Games"
+template="tool"
